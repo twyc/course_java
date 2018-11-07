@@ -106,6 +106,7 @@ public class Game {
                 System.out.println("\n-----------------");  //显示结果信息
               System.out.println("骰子数： "+ step);
               playerPos1 = getCurPos(1, playerPos1, step);   //计算这一次移动后的当前位置
+              playerPos2 = Math.max(playerPos2,0);
               System.out.println("\n您当前位置：  "+ playerPos1);
               System.out.println("对方当前位置："+ playerPos2);
               System.out.println("-----------------\n");
@@ -127,6 +128,7 @@ public class Game {
               System.out.println("\n-----------------"); //显示结果信息
               System.out.println("骰子数： "+ step);
               playerPos2 = getCurPos(2, playerPos2, step);   //计算这一次移动后的当前位置
+              playerPos1 = Math.max(playerPos1,0);
               System.out.println("\n您当前位置：  "+ playerPos2);
               System.out.println("对方当前位置："+ playerPos1);
               System.out.println("-----------------\n");
@@ -161,7 +163,7 @@ public class Game {
         Scanner input = new Scanner(System.in);
         String answer = input.next();
             //产生一个1~6的数字,即掷的骰子数目
-        int step = (int)(Math.random()*10)%6+1;
+        step = (int)(Math.random()*10)%6+1;
         if(step < 1 || step > 6){
           System.out.println("Game 166 is bug..");
         }
@@ -186,11 +188,11 @@ public class Game {
         switch(map.map[position]){   //根据地图中的关卡代号进行判断
            case 0:    //走到普通格
             if (position == playerPos1) {
-          playerPos1 = 0;
-        }
+            playerPos1 = 0;
+          }
             if (position == playerPos2) {
-          playerPos2 = 0;
-        }
+            playerPos2 = 0;
+          }
             break;
            case 1:   //幸运轮盘
              System.out.println(".....welcome to luckyTurn!.....");
@@ -223,7 +225,7 @@ public class Game {
             position -= 6;
             break;
           case 3:  //下一次暂停一次
-            goAndStop[no] = "pause";
+            goAndStop[no-1] = "off";
             break;
           case 4:   //时空隧道
             position += 10;
