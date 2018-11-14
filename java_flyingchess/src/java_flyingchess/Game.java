@@ -19,7 +19,7 @@ public class Game {
          goAndStop[0] = "on";  //记录玩家1下一次走或停
          goAndStop[1] = "on";  //设置玩家2下一次走或停
     }
-      
+    
     
     /**
      * 开始游戏
@@ -48,6 +48,7 @@ public class Game {
           setRole(1, role1);   //设置玩家1代表的角色
           setRole(2, role2);   //设置玩家2代表的角色     
           play();   //开始两人对战
+        input.close();
       }
       
       /**
@@ -164,9 +165,6 @@ public class Game {
         String answer = input.next();
             //产生一个1~6的数字,即掷的骰子数目
         step = (int)(Math.random()*10)%6+1;
-        if(step < 1 || step > 6){
-          System.out.println("Game 166 is bug..");
-        }
         return step; 
       }
       
